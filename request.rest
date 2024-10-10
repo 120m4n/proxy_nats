@@ -1,0 +1,27 @@
+@server=http://localhost:8080
+
+
+### Health Check
+GET {{server}}/mock_1/api/v1/health HTTP/1.1
+content-type: application/json
+
+
+### Echo
+POST {{server}}/mock_1/api/v1/echo HTTP/1.1
+content-type: application/json
+
+{
+    "name": "sample",
+    "message": "Hello World Tonijas",
+    "time": "Wed, 21 Oct 2015 18:27:50 GMT"
+}
+
+### Echo
+POST {{server}}/mock_2/api/v1/echo HTTP/1.1
+content-type: application/json
+
+{
+    "name": "sample",
+    "message": "Hello World Tonijas",
+    "time": "Wed, 21 Oct 2015 18:27:50 GMT"
+}
