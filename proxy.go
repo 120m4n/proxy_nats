@@ -72,9 +72,16 @@ func main(){
 		nc: nc,
 		topic: "example.topic",
 	}
-	// Definir diferentes backends para diferentes rutas
-	backend1 := "http://localhost:8081"
-	backend2 := "http://localhost:8082"
+    // Retrieve backend URLs from environment variables with default values
+    backend1 := os.Getenv("BACKEND1_URL")
+    if backend1 == "" {
+        backend1 = "http://localhost:8081"
+    }
+
+    backend2 := os.Getenv("BACKEND2_URL")
+    if backend2 == "" {
+        backend2 = "http://localhost:8082"
+    }
 
 	// Ruta pra el backend 1
 	http.HandleFunc("/mock_1/", func(w http.ResponseWriter, r *http.Request){

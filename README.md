@@ -1,4 +1,5 @@
 
+## PRUEBA DE CONCEPTO
 ## `proxy.go`
 
 The `proxy.go` file contains the main logic for the proxy server. It uses the `net/http/httputil` package to create a reverse proxy and the `nats.go` package to publish messages to a NATS server.
@@ -31,9 +32,11 @@ The `proxy.go` file contains the main logic for the proxy server. It uses the `n
 To test the proxy server, you can use the `request.rest` file with an HTTP client like [REST Client](https://marketplace.visualstudio.com/items?itemName=humao.rest-client) for Visual Studio Code.
 
 ```http
-POST http://localhost:8080/mock_1/test
-Content-Type: application/json
+POST {{server}}/mock_1/api/v1/echo HTTP/1.1
+content-type: application/json
 
 {
-    "message": "Hello, World!"
+    "name": "sample",
+    "message": "Mensaje para Nats",
+    "time": "Wed, 21 Oct 2015 18:27:50 GMT"
 }

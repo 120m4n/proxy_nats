@@ -3,18 +3,31 @@ services:
     build:
       context: ./api-mock
       dockerfile: Dockerfile
-    ports:
-      - "8081:8080"
+    container_name: backend1
     environment:
       - APP_VERSION=version:1.0.0
   backend2:
     build:
       context: ./api-mock
       dockerfile: Dockerfile
-    ports:
-      - "8082:8080"
+    container_name: backend2
     environment:
       - APP_VERSION=version:2.0.0
+  proxy:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: proxy-nats
+    ports:
+      - "8080:8080"
+    depends_on:
+      - backend1
+      - backend2
+      - nats
+    environment:
+      - NATS_URL=nats://nats:4222
+      - BACKEND1_URL=http://backend1:8080
+      - BACKEND2_URL=http://backend2:8080
   nats:
     image: nats-streaming:latest
     container_name: server-nats
@@ -27,9 +40,8 @@ services:
     build:
       context: ./nats-client
       dockerfile: Dockerfile
+    container_name: suscriptor-nats
     depends_on:
       - nats
     environment:
       - NATS_URL=nats://nats:4222
-    ports:
-      - "8083:8080"

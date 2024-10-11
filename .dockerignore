@@ -1,0 +1,51 @@
+# Ignore the Dockerfile itself
+Dockerfile
+
+# Ignore the .dockerignore file
+.dockerignore
+
+# Ignore version control directories
+.git
+.gitignore
+
+# Ignore Go build artifacts
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+*.test
+*.out
+*.yml
+*.rest
+*.md
+*.png
+
+
+# Ignore vendor directory
+vendor/
+api-mock/
+nats-client/
+nats-publisher/
+
+# Ignore binaries
+bin/
+build/
+
+# Ignore temporary files and directories
+*.log
+*.tmp
+*.swp
+*.bak
+*.old
+*.pid
+*.lock
+*.sock
+*.gz
+*.zip
+*.tar
+*.tgz
+*.bz2
+*.xz
+*.7z
+*.rar
